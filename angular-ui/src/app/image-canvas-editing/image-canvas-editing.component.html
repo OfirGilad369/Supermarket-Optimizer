@@ -1,0 +1,53 @@
+<form #productSelectionInput class="ProductSelectionContext">
+  <label class="ProductSelectionBoxText" for="fname">Point ID: {{selected_point}}</label>
+  <label class="ProductSelectionBoxText" for="fname">Update Point Products:</label>
+
+  <div class="dropdown">
+    <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmousedown="(function(e){ e.preventDefault(); })(event, this)">
+      <option value="Message">{{numberOfSelectedProducts}} Product(s) Selected</option>
+    </select>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <ng-container *ngFor="let product of listOfProducts">
+        <div class="form-check">
+          <label class="products">
+            <input type="checkbox" 
+                name="products" 
+                value={{product.value}}
+                [checked]="product.checked"
+                (change)="updateCheckedProduct(product, $event)"/>
+            {{product.name}}
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <input class="button" type="button" value="Update" (click)="UpdatePointProductsList()">
+</form>
+
+<form #MetaData class="MetaDataContext">
+  <label class="MetaBoxText" for="fname">MetaData Editor:</label>
+  <textarea #MetaDataText class="MetaDataTextArea" name="TextArea" cols="25" rows="5"></textarea>
+  <input type="button" value="Update" (click)="SendMetaData()">
+</form>
+
+<div #area class="menu-area" (contextmenu)="contextMenu($event)" (click)="OnClick($event)">
+  <canvas #canvas id="canvas" width="1000" height="600"></canvas>
+    <div class="customContext" (click)="stopPropagation($event)" #menu>
+      <ul>
+        <li #Option1 [hidden]="CheckPermission()" (click)="EditPositionsMode()">Edit Point Positions</li>
+        <li #Option2 [hidden]="CheckPermission()" (click)="PointProductsUpdateMode()">Edit Point Products</li>
+        <li #Option3 (click)="SelectStartingPointMode()">Set Starting Point</li> <!--No Permission Required-->
+        <li (click)="DeselectStartingPointMode()">Unset Starting Point</li> <!--No Permission Required-->
+
+        <li #Option4 [hidden]="CheckPermission()" (click)="AddPointsMode()">Add Point</li>
+        <li #Option5 [hidden]="CheckPermission()" (click)="AddConnectionsMode()">Add Connection</li>
+
+        <li #Option6 [hidden]="CheckPermission()" (click)="RemovePointsMode()">Remove Point</li>
+        <li #Option7 [hidden]="CheckPermission()" (click)="RemoveConnectionsMode()">Remove Connection</li>
+        
+        <li #Option8 [hidden]="CheckDebugPermission()" (click)="ShowMetaData()">Edit Metadata</li>
+        <li [hidden]="CheckPermission()" (click)="SaveMetadata()">Save Metadata</li>
+        <li [hidden]="CheckPermission()" (click)="ClearAnnotations()">Clear All</li>
+      </ul>
+    </div>
+</div>

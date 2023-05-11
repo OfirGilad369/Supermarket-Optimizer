@@ -1,0 +1,53 @@
+.productnav {
+    height: 100%;
+    width: 230px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+.productnav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.product-list:hover {
+    color: #f1f1f1;
+}
+
+.productnav b {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    background-color: rgba(17, 17, 17, 0.5);
+}
+
+.form-control {
+    margin-left: 0px; /* adjust the value as needed */
+    width: 190px;
+    display: none;
+}
+
+.btn-class1 {
+    margin-bottom: 5px;
+}
+
+.btn-class2 {
+  margin-top: 10px;
+  width: 170px;
+}
+
+.products {
+  padding: 10px 10px;
+  margin-left: 10px;
+}
